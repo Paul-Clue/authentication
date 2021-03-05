@@ -2,25 +2,61 @@
 
 <h1>Posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Post</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if user_signed_in? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.post %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><strong><><%= post.title %></strong></td>
+      </tr>
+      <tr>
+      <td><%= post.user.email%></td>
+      </tr>
+      <tr>
+      <td><%= post.post %></td>
+      </tr>
+      <tr>
+      <td><%= link_to 'Show', post %></td>
+      </tr>
+      <tr>
+      <td><%= %></td>
+      </tr>
+      <tr>
+      <td><%= %></td>
+      </tr>
+      <tr>
+      <td><%= %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Post</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.post %></td>
+            <td><%= link_to 'Show', post %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+<% end %>
 
 <br>
 
