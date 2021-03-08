@@ -1,18 +1,16 @@
 module PostsHelper
   def post_list(post)
-    if user_signed_in?
-      post.each do
-        # render inline: '<p> post.title </p>'
-        # render inline: '<p> post.user.email </p>'
-        # render inline: '<p> post.post </p>'
-        post.map { |item| tag.p(item.title) }.join.html_safe
-      end
+      data = ""
+      if user_signed_in? 
+        post.each do |post|
+          data += "<p> <strong>#{post.title}</strong> <br>
+          #{post.user.email}</br>#{post.post}</p>"
+        end
     else
-      post.each do
-        # render inline: '<p> post.title </p>'
-        # render inline: '<p> post.post </p>'
-        post.map { |item| tag.p(item.user.email) }.join.html_safe
+      post.each do |post|
+        data += "<p> <strong>#{post.title}</strong><br>#{post.post} </p>"
       end
     end
+    data.html_safe
   end
 end
